@@ -13,6 +13,68 @@ body {
     color: #333;
 }
 
+
+
+/* Star Background */
+#stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 200px 150px, white, transparent),
+        radial-gradient(1px 1px at 400px 80px, white, transparent),
+        radial-gradient(2px 2px at 600px 200px, white, transparent),
+        radial-gradient(1px 1px at 800px 100px, white, transparent),
+        radial-gradient(2px 2px at 1000px 300px, white, transparent);
+    background-size: 1200px 600px;
+    animation: twinkle 6s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+
+
+.shooting-star {
+    position: fixed;
+    width: 300px;              /* bigger */
+    height: 3px;              /* thicker */
+    background: linear-gradient(to right, white, transparent);
+
+    top: 20%;
+    left: -400px;
+
+    transform: rotate(-15deg);
+    z-index: -1;
+
+    animation: shoot 12s linear forwards; /* no infinite loop */
+    opacity: 0;
+}
+
+@keyframes shoot {
+    0% {
+        left: 120%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        left: -400px;
+        opacity: 0;
+    }
+}
+
+
 header {
     text-align: center;
     padding: 300px 20px;
@@ -24,13 +86,17 @@ section {
     max-width: 800px;
     margin: 80px auto;
     padding: 30px;
-    background: white;
+
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(5px);
+
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(255,255,255,0.1);
 
     opacity: 0;
     transition: all 0.8s ease;
 }
+
 
 .left {
     transform: translateX(-100px);
@@ -51,6 +117,11 @@ h2 {
 </style>
 </head>
 <body>
+
+<div id="stars"></div>
+<div class="shooting-star"></div>
+
+
 
 <header>
     <h1>Alexander Skoracki</h1>
@@ -83,6 +154,7 @@ h2 {
 <section class="right">
     <h2>Skills</h2>
     <ul>
+	<li>Java</li>
         <li>Python</li>
         <li>C++</li>
         <li>CAD</li>
@@ -93,11 +165,15 @@ h2 {
 <script>
 const sections = document.querySelectorAll("section");
 
-const observer = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+
         if (entry.isIntersecting) {
             entry.target.classList.add("show");
+        } else {
+            entry.target.classList.remove("show");
         }
+
     });
 }, {
     threshold: 0.2
