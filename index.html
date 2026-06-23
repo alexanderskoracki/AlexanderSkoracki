@@ -1,17 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Free HTML Site</title>
-    <style>
-        body { font-family: Georgia, sans-serif; margin: 40px; background-color: #f4f4f4; text-align: center; }
-        h1 { color: #333; }
-        p { color: #666; font-size: 18px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume</title>
+
+<style>
+body {
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    background: #000000;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 300px 20px;
+    background: #000000;
+    color: white;
+}
+
+section {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+.left {
+    transform: translateX(-100px);
+}
+
+.right {
+    transform: translateX(100px);
+}
+
+.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+h2 {
+    color: #1e3a8a;
+}
+</style>
 </head>
 <body>
+
+<header>
     <h1>Alexander Skoracki</h1>
-    <p> Test </p>
+    <p>Aerospace Engineering Student</p>
+</header>
+
+<section class="left">
+    <h2>Education</h2>
+    <p>Ohio State University</p>
+    <p>Sophomore B.S. Aerospace Engineering Student</p>
+</section>
+
+<section class="right">
+    <h2>Experience</h2>
+    <ul>
+        <li>Research on Drone Wildfire Detection</li>
+        <li>Research Assistant at OSU</li>
+    </ul>
+</section>
+
+<section class="left">
+    <h2>Projects</h2>
+    <ul>
+        <li>Autonomous Drone Navigation</li>
+        <li>Growth Chamber Design</li>
+	<li>Paper on Space Debris</li>
+    </ul>
+</section>
+
+<section class="right">
+    <h2>Skills</h2>
+    <ul>
+        <li>Python</li>
+        <li>C++</li>
+        <li>CAD</li>
+        <li>MATLAB</li>
+    </ul>
+</section>
+
+<script>
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, {
+    threshold: 0.2
+});
+
+sections.forEach(section => {
+    observer.observe(section);
+});
+</script>
+
 </body>
 </html>
