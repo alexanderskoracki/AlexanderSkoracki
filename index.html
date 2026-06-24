@@ -82,7 +82,8 @@ header {
     height: 100vh;              /* FULL SCREEN HEIGHT */
     display: flex;              /* centers content */
     flex-direction: column;
-    justify-content: center;    /* vertical center */
+    justify-content: flex-start;
+    padding-top: 20vh;    /* vertical center */
     align-items: center;        /* horizontal center */
     text-align: center;
 
@@ -91,6 +92,16 @@ header {
 
 	position: relative;
 }
+
+header h1 {
+    font-size: 5rem;  /* Try 4rem-6rem */
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 2rem;  /* Try 1.5rem-2.5rem */
+}
+
 
 section {
     max-width: 800px;
@@ -167,7 +178,7 @@ h2 {
 <body>
 
 <div class="top-banner">
-    <img src="your-photo.jpg" class="profile-pic" alt="Alexander Skoracki">
+    <img src="1756942625825.jpg" class="profile-pic" alt="Alexander Skoracki">
     <div class="banner-text">
         <strong>Alexander Skoracki</strong><br>
         Aerospace Engineering Student
@@ -182,8 +193,6 @@ h2 {
 
 
 <header>
-
-    <img src="1756942625825.jpg" class="profile-pic">
 
     <h1>Alexander Skoracki</h1>
     <p>Aerospace Engineering Student</p>
