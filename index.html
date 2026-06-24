@@ -170,6 +170,265 @@ section {
 }
 
 
+.satellite {
+    position: fixed;
+    top: 25%;
+    left: 110%;
+
+    font-size: 40px;
+    z-index: -1;
+
+    opacity: 0;
+
+    animation: satelliteFlyby 30s linear infinite;
+}
+
+@keyframes satelliteFlyby {
+    0% {
+        left: 110%;
+        top: 20%;
+        opacity: 0;
+        transform: rotate(-15deg);
+    }
+
+    5% {
+        opacity: 0.7;
+    }
+
+    50% {
+        left: 50%;
+        top: 28%;
+        opacity: 0.7;
+    }
+
+    95% {
+        opacity: 0.7;
+    }
+
+    100% {
+        left: -10%;
+        top: 35%;
+        opacity: 0;
+        transform: rotate(15deg);
+    }
+}
+
+
+
+
+
+/* PLANETS */
+.planet {
+    position: fixed;
+    border-radius: 50%;
+    z-index: -2;
+    opacity: 0.9;
+    overflow: visible; /* important for rings */
+}
+
+/* =========================
+   ROCKY / BROWN PLANET
+========================= */
+.planet.one {
+    width: 120px;
+    height: 120px;
+    top: 30%;
+    left: 10%;
+    animation: floatPlanet1 60s linear infinite;
+
+    /* texture layers */
+    background:
+        radial-gradient(circle at 30% 30%, #caa472 0%, #8a4c0e 40%, #4a2a12 100%),
+        repeating-linear-gradient(
+            45deg,
+            rgba(0,0,0,0.15) 0px,
+            rgba(0,0,0,0.15) 6px,
+            transparent 6px,
+            transparent 12px
+        );
+    background-blend-mode: overlay;
+}
+
+/* =========================
+   ICE / BLUE PLANET
+========================= */
+.planet.two {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 80%;
+    animation: floatPlanet2 90s linear infinite;
+
+    background:
+        radial-gradient(circle at 30% 30%, #bfe9ff 0%, #1a4f7a 60%, #0a1b2a 100%),
+        repeating-radial-gradient(
+            circle at 40% 40%,
+            rgba(255,255,255,0.08) 0px,
+            rgba(255,255,255,0.08) 2px,
+            transparent 3px,
+            transparent 8px
+        );
+
+    background-blend-mode: overlay;
+}
+
+/* =========================
+   GAS GIANT (WITH RINGS)
+========================= */
+/* =========================
+   PLANET (BASE)
+========================= */
+
+
+.planet.three {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 60%;
+    opacity: 1;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle at 30% 30%, #d7b3ff 0%, #6b2c91 50%, #2b0a3d 100%);
+}
+
+/* =========================
+   SINGLE STATIC RING (NO SPIN)
+========================= */
+.planet.three .rings {
+    position: absolute;
+
+    width: 460px;
+    height: 160px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%) rotateX(70deg) rotateZ(-20deg);
+
+    border-radius: 50%;
+
+    /* ONE RING BASE */
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255,255,255,0.95) 0%,
+        rgba(255,255,255,0.7) 25%,
+        rgba(255,255,255,0.35) 45%,
+        rgba(255,255,255,0.15) 60%,
+        transparent 80%
+    );
+
+    opacity: 1;
+
+    filter: none;
+
+    pointer-events: none;
+
+    animation: none;
+
+    /* keep it centered visually */
+
+
+-webkit-mask-image: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,1) 55%,
+        rgba(0,0,0,0) 75%
+    );
+
+    mask-image: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,1) 55%,
+        rgba(0,0,0,0) 75%
+    );
+}
+
+
+
+
+/* optional faint shadow ring (still ONE ring system, not multiple bands) */
+.planet.three .rings::after {
+    content: "";
+    position: absolute;
+
+    width: 440px;
+    height: 140px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,0.25) 0%,
+        transparent 70%
+    );
+
+    opacity: 0.4;
+}
+/* planet surface */
+/* =========================
+   OUTER RING (MAIN DEBRIS FIELD)
+========================= */
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   RING ROTATION
+========================= */
+@keyframes ringSpin {
+    from {
+        transform: translate(-50%, -50%) rotateX(70deg) rotateZ(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotateX(70deg) rotateZ(360deg);
+    }
+}
+
+
+
+
+
+
+
+/* slow drifting motion */
+@keyframes floatPlanet1 {
+    0%   { transform: translate(0,0) rotate(0deg); }
+    50%  { transform: translate(40px, -30px) rotate(45deg); }
+    100% { transform: translate(0,0) rotate(90deg); }
+}
+
+@keyframes floatPlanet2 {
+    0%   { transform: translate(0,0) rotate(0deg); }
+    50%  { transform: translate(-60px, 40px) rotate(-180deg); }
+    100% { transform: translate(0,0) rotate(-360deg); }
+}
+
+@keyframes floatPlanet3 {
+    0%   { transform: translate(0,0) scale(1); }
+    50%  { transform: translate(-30px, -50px) scale(1.05); }
+    100% { transform: translate(0,0) scale(1); }
+}
+
+
+
+
+
+
+
 h2 {
     color: #1e3a8a;
 }
@@ -186,7 +445,18 @@ h2 {
 </div>
 
 
-<div id="stars"></div>
+<div id="stars">
+
+</div>
+
+<div class="satellite">🛰️</div>
+
+<div class="planet one"></div>
+<div class="planet two"></div>
+<div class="planet three">
+	<div class="rings"></div>
+</div>
+
 <div class="shooting-star"></div>
 
 
